@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://yc7k03mwbxli"]
+
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_qr2gh"]
+[ext_resource type="PackedScene" uid="uid://bmccqmg1mieg1" path="res://Scenes/ship.tscn" id="1_rp00h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ja3k7"]
+size = Vector2(16, 832)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y25up"]
+size = Vector2(1528, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sodlk"]
+size = Vector2(1584, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47cye"]
+size = Vector2(16, 832)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ur3yu"]
+size = Vector2(16, 832)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_qr2gh")
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = 1656.0
+offset_top = 8.0
+offset_right = 1928.0
+offset_bottom = 832.0
+color = Color(1, 0, 0, 0.278431)
+
+[node name="Proyectiles" type="Node" parent="."]
+
+[node name="Ship" parent="." instance=ExtResource("1_rp00h")]
+position = Vector2(512, 320)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(768, 320)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-384, 96)
+shape = SubResource("RectangleShape2D_ja3k7")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(380, 512)
+shape = SubResource("RectangleShape2D_y25up")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(352, -316)
+shape = SubResource("RectangleShape2D_sodlk")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1152, 96)
+shape = SubResource("RectangleShape2D_47cye")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(1664, 416)
+shape = SubResource("RectangleShape2D_ur3yu")
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_right = 384.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+offset_left = 384.0
+offset_top = 832.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(6.61798e-07, 0.260467, 2.40654e-08, 1)

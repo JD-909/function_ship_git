@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmccqmg1mieg1"]
+
+[ext_resource type="Script" path="res://Scenes/ship.gd" id="1_bqfk6"]
+[ext_resource type="Texture2D" uid="uid://c8i5iwv8rcq57" path="res://Sprites/icon.svg" id="1_h05sh"]
+[ext_resource type="AudioStream" uid="uid://b23v0w3aar050" path="res://Sfx/retro-laser-1-236669.mp3" id="3_iyd71"]
+[ext_resource type="PackedScene" uid="uid://bgnvhjk86fflo" path="res://Scenes/orbitalWeapon/orbital_weapon.tscn" id="4_kn8lk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_818yb"]
+size = Vector2(48, 48)
+
+[node name="Ship" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 17
+script = ExtResource("1_bqfk6")
+
+[node name="OrbitalWeapon" parent="." instance=ExtResource("4_kn8lk")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_818yb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, -1.90735e-06)
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("1_h05sh")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_iyd71")
+
+[node name="ShootTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="BurstTimer" type="Timer" parent="."]
+wait_time = 0.05
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

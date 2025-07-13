@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy0m3lneb38p0"]
+
+[ext_resource type="Script" path="res://Scenes/playerBullets/neg_sine_bullet.gd" id="1_4f5g6"]
+[ext_resource type="Texture2D" uid="uid://pbnm0nl83sm6" path="res://Sprites/ProyectileSprites/circle.png" id="2_i3g42"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r8m4q"]
+radius = 8.0
+
+[node name="NegSineBullet" type="CharacterBody2D"]
+script = ExtResource("1_4f5g6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r8m4q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+scale = Vector2(0.0625, 0.0625)
+texture = ExtResource("2_i3g42")
