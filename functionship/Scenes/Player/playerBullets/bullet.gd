@@ -18,5 +18,9 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		queue_free()
 
+func _on_area_2d_body_entered(body):
+	body.recieve_damage(1)
+	queue_free()
+
 func movement(velocity_var : Vector2, delta_var : float) -> void:
 	velocity = velocity_var

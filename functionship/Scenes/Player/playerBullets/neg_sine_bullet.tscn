@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy0m3lneb38p0"]
+
+[ext_resource type="Script" path="res://Scenes/Player/playerBullets/neg_sine_bullet.gd" id="1_4f5g6"]
+[ext_resource type="Texture2D" uid="uid://pbnm0nl83sm6" path="res://Sprites/ProyectileSprites/circle.png" id="2_i3g42"]
+[ext_resource type="Shape2D" uid="uid://bo8icdlwa0u8l" path="res://Scenes/Player/playerBullets/shapes/bulletColliderShape.tres" id="2_n0k1x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bu3xm"]
+radius = 8.0
+
+[node name="NegSineBullet" type="CharacterBody2D"]
+script = ExtResource("1_4f5g6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = ExtResource("2_n0k1x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+scale = Vector2(0.0625, 0.0625)
+texture = ExtResource("2_i3g42")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_bu3xm")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

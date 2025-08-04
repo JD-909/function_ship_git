@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bmccqmg1mieg1"]
 
-[ext_resource type="Script" path="res://Scenes/ship.gd" id="1_bqfk6"]
+[ext_resource type="Script" path="res://Scenes/Player/ship.gd" id="1_bqfk6"]
 [ext_resource type="Texture2D" uid="uid://c8i5iwv8rcq57" path="res://Sprites/icon.svg" id="1_h05sh"]
 [ext_resource type="AudioStream" uid="uid://b23v0w3aar050" path="res://Sfx/retro-laser-1-236669.mp3" id="3_iyd71"]
 [ext_resource type="PackedScene" uid="uid://bgnvhjk86fflo" path="res://Scenes/orbitalWeapon/orbital_weapon.tscn" id="4_kn8lk"]
@@ -14,6 +14,7 @@ collision_mask = 17
 script = ExtResource("1_bqfk6")
 
 [node name="OrbitalWeapon" parent="." instance=ExtResource("4_kn8lk")]
+baseRadius = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_818yb")

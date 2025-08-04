@@ -3,12 +3,19 @@ extends CharacterBody2D
 
 @export var n : float = 0
 @export var d : float = 1
-@export var radius : float = 100
+@export var baseRadius : float = 100
 @export var theta : float = 0
 @export var orbitSpeed : float = 5
+@export var orbitalDamage : float = 2
+
+var radius : float = 100
 
 func _physics_process(delta: float) -> void:
 	theta = theta + delta*orbitSpeed
-	radius = cos((n/d)*theta)*100
+	radius = cos((n/d)*theta)*baseRadius
 	position.x = radius*cos(theta)
-	position. y = radius*sin(theta)
+	position.y = radius*sin(theta)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	body.recieve_damage(orbitalDamage)

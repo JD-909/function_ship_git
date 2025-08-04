@@ -63,4 +63,6 @@ ESC={
 2d_physics/layer_1="wallLayer"
 2d_physics/layer_2="bulletLayer"
 2d_physics/layer_3="playerLayer"
+2d_physics/layer_4="enemyLayer"
 2d_physics/layer_5="ShipBoundsLayer"
+2d_physics/layer_6="orbitalWeaponLayer"
