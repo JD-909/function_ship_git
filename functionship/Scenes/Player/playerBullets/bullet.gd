@@ -2,8 +2,7 @@ class_name Bullet
 extends CharacterBody2D
 
 @export var speed : float = 800
-@export var frequency : float = 1
-@export var amplitude : float = 9
+@export var bulletDamage : float = 0
 
 func _ready() -> void:
 	collision_layer = 2
@@ -19,7 +18,7 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 func _on_area_2d_body_entered(body):
-	body.recieve_damage(1)
+	body.recieve_damage(bulletDamage)
 	queue_free()
 
 func movement(velocity_var : Vector2, delta_var : float) -> void:

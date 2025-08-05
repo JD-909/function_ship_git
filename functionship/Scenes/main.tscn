@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://yc7k03mwbxli"]
+[gd_scene load_steps=12 format=3 uid="uid://yc7k03mwbxli"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_qr2gh"]
 [ext_resource type="PackedScene" uid="uid://bmccqmg1mieg1" path="res://Scenes/Player/ship.tscn" id="1_rp00h"]
-[ext_resource type="PackedScene" uid="uid://cvhmmt485abal" path="res://Scenes/Enemies/enemyDummy.tscn" id="2_ehb17"]
+[ext_resource type="PackedScene" uid="uid://cvhmmt485abal" path="res://Scenes/Enemies/enemyDummy1.tscn" id="2_ehb17"]
+[ext_resource type="Texture2D" uid="uid://vg3dwytxtnq5" path="res://Sprites/Backgrounds/regularSpace.jpg" id="2_kguvi"]
+[ext_resource type="PackedScene" uid="uid://c3yhbj0x0j02u" path="res://Scenes/Enemies/enemyDummy2.tscn" id="5_7762o"]
+[ext_resource type="PackedScene" uid="uid://qjmr2ahyohon" path="res://Scenes/Enemies/enemyDummy3.tscn" id="6_ux0l4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ja3k7"]
 size = Vector2(16, 960)
@@ -16,23 +19,28 @@ size = Vector2(1668, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47cye"]
 size = Vector2(16, 960)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysqvq"]
-size = Vector2(1.90735e-06, 182.029)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur3yu"]
 size = Vector2(16.0001, 1296)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_qr2gh")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.678431, 1, 1)
+position = Vector2(1156, 420)
+scale = Vector2(0.804167, 0.777778)
+texture = ExtResource("2_kguvi")
+metadata/_edit_lock_ = true
+
 [node name="Proyectiles" type="Node" parent="."]
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Enemy" parent="Enemies" instance=ExtResource("2_ehb17")]
-position = Vector2(1072, 624)
+[node name="Enemy3" parent="Enemies" instance=ExtResource("2_ehb17")]
+position = Vector2(1152, 208)
 
 [node name="Ship" parent="." instance=ExtResource("1_rp00h")]
+z_index = 1
 position = Vector2(512, 320)
 
 [node name="BulletBounds" type="StaticBody2D" parent="."]
@@ -58,11 +66,6 @@ metadata/_edit_lock_ = true
 position = Vector2(1216, 96)
 shape = SubResource("RectangleShape2D_47cye")
 metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletBounds"]
-position = Vector2(704, 0)
-scale = Vector2(10.2806, 1.05478)
-shape = SubResource("RectangleShape2D_ysqvq")
 
 [node name="PlayerBounds" type="StaticBody2D" parent="."]
 collision_layer = 16
@@ -94,7 +97,7 @@ anchors_preset = 0
 layout_mode = 0
 offset_right = 384.0
 offset_bottom = 1080.0
-color = Color(0, 0, 0, 1)
+color = Color(0.259294, 0.259294, 0.259294, 1)
 
 [node name="ColorRect4" type="ColorRect" parent="UI"]
 layout_mode = 0
@@ -111,3 +114,9 @@ offset_top = 832.0
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(6.61798e-07, 0.260467, 2.40654e-08, 1)
+
+[node name="Enemy" parent="." instance=ExtResource("5_7762o")]
+position = Vector2(1344, 464)
+
+[node name="Enemy2" parent="." instance=ExtResource("6_ux0l4")]
+position = Vector2(1096, 616)

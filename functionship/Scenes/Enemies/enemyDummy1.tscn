@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvhmmt485abal"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/enemy.gd" id="1_a3n01"]
+[ext_resource type="Texture2D" uid="uid://f3cwljr2q4t7" path="res://Sprites/ShipSprites/SpaceshipKit.png" id="2_3uywr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ass6u"]
+size = Vector2(64, 48)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 8
+script = ExtResource("1_a3n01")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(1.1, 1.1)
+shape = SubResource("RectangleShape2D_ass6u")
+
+[node name="DamageLabel" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = 40.0
+offset_right = 16.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ACA"
+
+[node name="Spritesheet" type="Node2D" parent="."]
+position = Vector2(-1.90735e-06, -1.90735e-06)
+rotation = 1.5708
+scale = Vector2(2.5, 2.5)
+
+[node name="Wings" type="Sprite2D" parent="Spritesheet"]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("2_3uywr")
+flip_v = true
+hframes = 18
+vframes = 10
+frame = 61
+
+[node name="Thrusters" type="Sprite2D" parent="Spritesheet"]
+texture = ExtResource("2_3uywr")
+flip_v = true
+hframes = 18
+vframes = 10
+frame = 75
+
+[node name="Cockpit" type="Sprite2D" parent="Spritesheet"]
+texture = ExtResource("2_3uywr")
+flip_v = true
+hframes = 18
+vframes = 10
+frame = 12

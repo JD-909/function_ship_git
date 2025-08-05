@@ -1,16 +1,55 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgnvhjk86fflo"]
+[gd_scene load_steps=10 format=3 uid="uid://bgnvhjk86fflo"]
 
 [ext_resource type="Texture2D" uid="uid://pbnm0nl83sm6" path="res://Sprites/ProyectileSprites/circle.png" id="1_g7rff"]
 [ext_resource type="Script" path="res://Scenes/orbitalWeapon/orbital_weapon.gd" id="1_qt03u"]
+[ext_resource type="Texture2D" uid="uid://2pcl7ot2yjex" path="res://Sprites/ProyectileSprites/bulletSprites2.png" id="3_oqyqr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k272f"]
 radius = 16.0
 
 [sub_resource type="Gradient" id="Gradient_nl50s"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ketap"]
-radius = 8.0
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_prw5a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Circle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [144]
+}
+
+[sub_resource type="Animation" id="Animation_r2kb3"]
+resource_name = "new_animation"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Circle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [152, 153, 154, 155, 156, 157, 158, 159]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8wtby"]
+_data = {
+"RESET": SubResource("Animation_prw5a"),
+"orbital_animation": SubResource("Animation_r2kb3")
+}
 
 [node name="OrbitalWeapon" type="CharacterBody2D"]
 collision_layer = 32
@@ -28,13 +67,22 @@ scale_amount_max = 0.04
 color_ramp = SubResource("Gradient_nl50s")
 
 [node name="Circle" type="Sprite2D" parent="."]
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("1_g7rff")
+scale = Vector2(2, 2)
+texture = ExtResource("3_oqyqr")
+hframes = 24
+vframes = 15
+frame = 144
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_ketap")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8wtby")
+}
+autoplay = "orbital_animation"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

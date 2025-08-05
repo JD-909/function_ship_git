@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ciwx5li6x07xh"]
 
 [ext_resource type="Script" path="res://Scenes/Player/playerBullets/pos_cosine_bullet.gd" id="1_7iek3"]
-[ext_resource type="Texture2D" uid="uid://pbnm0nl83sm6" path="res://Sprites/ProyectileSprites/circle.png" id="2_c7rte"]
 [ext_resource type="Shape2D" uid="uid://bo8icdlwa0u8l" path="res://Scenes/Player/playerBullets/shapes/bulletColliderShape.tres" id="2_nl4ye"]
+[ext_resource type="Texture2D" uid="uid://2pcl7ot2yjex" path="res://Sprites/ProyectileSprites/bulletSprites2.png" id="3_3rkrb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h26tx"]
 radius = 8.0
@@ -14,9 +14,10 @@ script = ExtResource("1_7iek3")
 shape = ExtResource("2_nl4ye")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 1, 1)
-scale = Vector2(0.0625, 0.0625)
-texture = ExtResource("2_c7rte")
+texture = ExtResource("3_3rkrb")
+hframes = 24
+vframes = 15
+frame = 88
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 8

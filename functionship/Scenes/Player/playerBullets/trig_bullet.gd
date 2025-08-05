@@ -1,6 +1,10 @@
 class_name TrigBullet
 extends Bullet
 
+
+@export var frequency : float = 1
+@export var amplitude : float = 11
+
 var initial_pos
 var sign : int 
 
