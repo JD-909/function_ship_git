@@ -11,6 +11,7 @@ collision_layer = 8
 script = ExtResource("1_f73ht")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 0)
 scale = Vector2(1.2, 1.2)
 shape = SubResource("RectangleShape2D_ass6u")
 
@@ -33,26 +34,23 @@ scale = Vector2(2.5, 2.5)
 
 [node name="Wings" type="Sprite2D" parent="Spritesheet"]
 modulate = Color(1, 0.898039, 0, 1)
-scale = Vector2(1, 1)
 texture = ExtResource("2_be071")
 flip_v = true
 hframes = 18
 vframes = 10
 frame = 60
 
+[node name="Thrusters" type="Sprite2D" parent="Spritesheet"]
+position = Vector2(0, -2)
+texture = ExtResource("2_be071")
+flip_v = true
+hframes = 18
+vframes = 10
+frame = 93
+
 [node name="Cockpit" type="Sprite2D" parent="Spritesheet"]
-scale = Vector2(1, 1)
 texture = ExtResource("2_be071")
 flip_v = true
 hframes = 18
 vframes = 10
 frame = 31
-
-[node name="Thrusters" type="Sprite2D" parent="Spritesheet"]
-position = Vector2(7.62937e-07, -7.62943e-07)
-scale = Vector2(1, 1)
-texture = ExtResource("2_be071")
-flip_v = true
-hframes = 18
-vframes = 10
-frame = 97

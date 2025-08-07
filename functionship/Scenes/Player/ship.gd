@@ -7,15 +7,13 @@ extends CharacterBody2D
 @export var burst : int = 1
 @export var fireRate : float = 1
 @export var spreadAngle : float = TAU/36												#siendo TAU=2*PI=360 grados y TAU/36=10 grados
-@export var bulletArray : Array[Resource] = [Globals.linearBulletResource]
+@export var bulletArraySize : int = 1
 
 var initialAngle : float
+var bulletArray : Array[Resource] = [Globals.linearBulletResource,Globals.sineBulletResource,Globals.cosineBulletResource,Globals.negSineBulletResource,Globals.negCosineBulletResource]
 
 func _ready() -> void:
-	bulletArray.append(Globals.sineBulletResource)
-	bulletArray.append(Globals.cosineBulletResource)
-	bulletArray.append(Globals.negSineBulletResource)
-	bulletArray.append(Globals.negCosineBulletResource)
+	print(bulletArray)
 	$ShootTimer.wait_time = 1.0/(fireRate)
 	initialAngle = (spreadAngle/2)*(amount-1)
 	$OrbitalWeapon.orbitDamage = damage
@@ -34,10 +32,36 @@ func _on_shoot_timer_timeout() -> void:
 	shoot()
 	$ShootTimer.stop()
 
+#STATS EDITORS:
+#DMG
+func increase_damage(scalar: float) -> void:
+	if damage+scalar >= 1:
+		damage = damage + scalar
+		$OrbitalWeapon.orbitDamage = damage
+		$"../UI/VBoxContainer/Damage/Number".text = str(damage)
+
+#AMnT
+func increase_amount(scalar: int) -> void:
+	if amount+scalar >= 0:
+		amount = amount + scalar
+		initialAngle = (spreadAngle/2)*(amount-1)
+		$"../UI/VBoxContainer/Amount/Number".text = str(amount)
+
+#BRST
+func increase_burst(scalar: int) -> void:
+	if burst+scalar >= 1:
+		burst = burst + scalar
+		$"../UI/VBoxContainer/Burst/Number".text = str(burst)
+
+#TRIG
+func level_up_trig(scalar: int) -> void:
+	if bulletArraySize+scalar >= 1 and bulletArraySize+scalar <= 5:
+		bulletArraySize = bulletArraySize + scalar
+		$"../UI/VBoxContainer/Trigonometrics/Number".text = str(bulletArraySize-1)
 
 func shoot() -> void:
 	for n in burst:
-		for i in bulletArray.size():												#todas las balas a disparar
+		for i in bulletArraySize:												#todas las balas a disparar
 			var actualBullet : Resource = bulletArray[i]
 			
 			if i==0 :
