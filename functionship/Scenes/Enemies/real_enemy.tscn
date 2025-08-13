@@ -1,34 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvhmmt485abal"]
+[gd_scene load_steps=5 format=3 uid="uid://bntpsskh5r4hm"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/dummyEnemy.gd" id="1_a3n01"]
-[ext_resource type="Texture2D" uid="uid://f3cwljr2q4t7" path="res://Sprites/ShipSprites/SpaceshipKit.png" id="2_3uywr"]
+[ext_resource type="Script" path="res://Scenes/Enemies/realEnemy.gd" id="1_brxfw"]
+[ext_resource type="Texture2D" uid="uid://f3cwljr2q4t7" path="res://Sprites/ShipSprites/SpaceshipKit.png" id="2_v4ioy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ass6u"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u52xo"]
 size = Vector2(64, 48)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yx4sd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ua8w6"]
 size = Vector2(58.3333, 43.3333)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="RealEnemy" type="CharacterBody2D"]
 collision_layer = 8
-script = ExtResource("1_a3n01")
+script = ExtResource("1_brxfw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.38419e-07, 0)
 scale = Vector2(1.1, 1.1)
-shape = SubResource("RectangleShape2D_ass6u")
-
-[node name="DamageLabel" type="Label" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = 40.0
-offset_right = 16.0
-offset_bottom = 63.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "ACA"
+shape = SubResource("RectangleShape2D_u52xo")
+metadata/_edit_lock_ = true
 
 [node name="Spritesheet" type="Node2D" parent="."]
 position = Vector2(-1.90735e-06, -1.90735e-06)
@@ -37,21 +26,22 @@ scale = Vector2(2.5, 2.5)
 
 [node name="Wings" type="Sprite2D" parent="Spritesheet"]
 modulate = Color(1, 0, 0, 1)
-texture = ExtResource("2_3uywr")
+texture = ExtResource("2_v4ioy")
 flip_v = true
 hframes = 18
 vframes = 10
 frame = 61
 
 [node name="Thrusters" type="Sprite2D" parent="Spritesheet"]
-texture = ExtResource("2_3uywr")
+texture = ExtResource("2_v4ioy")
 flip_v = true
 hframes = 18
 vframes = 10
 frame = 75
 
 [node name="Cockpit" type="Sprite2D" parent="Spritesheet"]
-texture = ExtResource("2_3uywr")
+position = Vector2(7.62937e-07, -7.62943e-07)
+texture = ExtResource("2_v4ioy")
 flip_v = true
 hframes = 18
 vframes = 10
@@ -59,10 +49,11 @@ frame = 12
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 5
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1.07288e-06, 0)
 scale = Vector2(1.2, 1.2)
-shape = SubResource("RectangleShape2D_yx4sd")
+shape = SubResource("RectangleShape2D_ua8w6")
+metadata/_edit_lock_ = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://yc7k03mwbxli"]
+[gd_scene load_steps=11 format=3 uid="uid://yc7k03mwbxli"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_qr2gh"]
 [ext_resource type="PackedScene" uid="uid://bmccqmg1mieg1" path="res://Scenes/Player/ship.tscn" id="1_rp00h"]
-[ext_resource type="PackedScene" uid="uid://cvhmmt485abal" path="res://Scenes/Enemies/enemyDummy1.tscn" id="2_ehb17"]
 [ext_resource type="Texture2D" uid="uid://vg3dwytxtnq5" path="res://Sprites/Backgrounds/regularSpace.jpg" id="2_kguvi"]
 [ext_resource type="PackedScene" uid="uid://c3yhbj0x0j02u" path="res://Scenes/Enemies/enemyDummy2.tscn" id="5_7762o"]
-[ext_resource type="PackedScene" uid="uid://qjmr2ahyohon" path="res://Scenes/Enemies/enemyDummy3.tscn" id="6_ux0l4"]
+[ext_resource type="PackedScene" uid="uid://bntpsskh5r4hm" path="res://Scenes/Enemies/real_enemy.tscn" id="5_d7660"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ja3k7"]
 size = Vector2(16, 960)
@@ -36,12 +35,15 @@ metadata/_edit_lock_ = true
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Enemy3" parent="Enemies" instance=ExtResource("2_ehb17")]
-position = Vector2(1152, 208)
+[node name="Enemy" parent="Enemies" instance=ExtResource("5_7762o")]
+position = Vector2(1344, 464)
+
+[node name="RealEnemy" parent="Enemies" instance=ExtResource("5_d7660")]
+position = Vector2(1304, 272)
 
 [node name="Ship" parent="." instance=ExtResource("1_rp00h")]
 z_index = 1
-position = Vector2(512, 320)
+position = Vector2(640, 416)
 
 [node name="BulletBounds" type="StaticBody2D" parent="."]
 position = Vector2(768, 320)
@@ -122,6 +124,15 @@ offset_bottom = 40.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="Label2" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "Ship values"
+
+[node name="HSeparator" type="HSeparator" parent="UI/VBoxContainer"]
+layout_mode = 2
+
 [node name="Damage" type="HBoxContainer" parent="UI/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -182,7 +193,19 @@ text = "+"
 layout_mode = 2
 text = "-"
 
-[node name="HSeparator" type="HSeparator" parent="UI/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "Trig values"
+
+[node name="HSeparator4" type="HSeparator" parent="UI/VBoxContainer"]
 layout_mode = 2
 
 [node name="Trigonometrics" type="HBoxContainer" parent="UI/VBoxContainer"]
@@ -205,11 +228,60 @@ text = "+"
 layout_mode = 2
 text = "-"
 
-[node name="Enemy" parent="." instance=ExtResource("5_7762o")]
-position = Vector2(1344, 464)
+[node name="HSeparator5" type="HSeparator" parent="UI/VBoxContainer"]
+layout_mode = 2
 
-[node name="Enemy2" parent="." instance=ExtResource("6_ux0l4")]
-position = Vector2(1096, 616)
+[node name="HSeparator6" type="HSeparator" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "Orbit values"
+
+[node name="HSeparator7" type="HSeparator" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Orbit_N" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/Orbit_N"]
+layout_mode = 2
+text = "N = "
+
+[node name="Number" type="Label" parent="UI/VBoxContainer/Orbit_N"]
+layout_mode = 2
+text = "0"
+
+[node name="MoreOrbitN" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="LessOrbitN" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "-"
+
+[node name="Orbit_D" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/Orbit_D"]
+layout_mode = 2
+text = "D = "
+
+[node name="Number" type="Label" parent="UI/VBoxContainer/Orbit_D"]
+layout_mode = 2
+text = "0"
+
+[node name="MoreOrbitD" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="LessOrbitD" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "-"
 
 [connection signal="pressed" from="UI/VBoxContainer/MoreDamage" to="." method="_on_more_damage_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/LessDamage" to="." method="_on_less_damage_pressed"]
@@ -219,3 +291,7 @@ position = Vector2(1096, 616)
 [connection signal="pressed" from="UI/VBoxContainer/LessBurst" to="." method="_on_less_burst_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/MoreTrig" to="." method="_on_more_trig_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/LessTrig" to="." method="_on_less_trig_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/MoreOrbitN" to="." method="_on_more_orbit_n_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/LessOrbitN" to="." method="_on_less_orbit_n_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/MoreOrbitD" to="." method="_on_more_orbit_d_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/LessOrbitD" to="." method="_on_less_orbit_d_pressed"]

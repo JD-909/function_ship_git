@@ -13,7 +13,6 @@ var initialAngle : float
 var bulletArray : Array[Resource] = [Globals.linearBulletResource,Globals.sineBulletResource,Globals.cosineBulletResource,Globals.negSineBulletResource,Globals.negCosineBulletResource]
 
 func _ready() -> void:
-	print(bulletArray)
 	$ShootTimer.wait_time = 1.0/(fireRate)
 	initialAngle = (spreadAngle/2)*(amount-1)
 	$OrbitalWeapon.orbitDamage = damage
@@ -26,21 +25,17 @@ func _physics_process(delta: float) -> void:
 	velocity = input_vector*speed
 	move_and_slide()
 	# End
-	
 
-func _on_shoot_timer_timeout() -> void:
-	shoot()
-	$ShootTimer.stop()
 
 #STATS EDITORS:
 #DMG
 func increase_damage(scalar: float) -> void:
-	if damage+scalar >= 1:
+	if damage+scalar >= 0:
 		damage = damage + scalar
 		$OrbitalWeapon.orbitDamage = damage
 		$"../UI/VBoxContainer/Damage/Number".text = str(damage)
 
-#AMnT
+#AMNT
 func increase_amount(scalar: int) -> void:
 	if amount+scalar >= 0:
 		amount = amount + scalar
@@ -59,6 +54,19 @@ func level_up_trig(scalar: int) -> void:
 		bulletArraySize = bulletArraySize + scalar
 		$"../UI/VBoxContainer/Trigonometrics/Number".text = str(bulletArraySize-1)
 
+#ORBIT STATS
+#N
+func increase_orbit_n(scalar: int) -> void:
+	$OrbitalWeapon.n = $OrbitalWeapon.n + scalar
+	$"../UI/VBoxContainer/Orbit_N/Number".text = str($OrbitalWeapon.n)
+
+#D
+func increase_orbit_d(scalar: int) -> void:
+	if ($OrbitalWeapon.d + scalar >= 1):
+		$OrbitalWeapon.d = $OrbitalWeapon.d + scalar
+		$"../UI/VBoxContainer/Orbit_D/Number".text = str($OrbitalWeapon.d)
+
+#SHOOTING HANDLER
 func shoot() -> void:
 	for n in burst:
 		for i in bulletArraySize:												#todas las balas a disparar
@@ -75,7 +83,7 @@ func shoot() -> void:
 			else:
 				var projectileInstance = actualBullet.instantiate()						#instancio las balas trigonometricas
 				projectileInstance.position = Vector2(position.x, position.y)
-				projectileInstance.bulletDamage = damage + bulletArray.size() -2
+				projectileInstance.bulletDamage = damage + bulletArraySize-2
 				get_parent().get_node("Proyectiles").add_child(projectileInstance)
 		#shooting sound
 		#$AudioStreamPlayer2D.play()
@@ -83,3 +91,12 @@ func shoot() -> void:
 		await $BurstTimer.timeout
 	
 	$ShootTimer.start()
+
+func _on_shoot_timer_timeout() -> void:
+	shoot()
+	$ShootTimer.stop()
+
+#DYING
+func die() -> void:
+	global_position = Vector2(640, 416)
+	_ready()

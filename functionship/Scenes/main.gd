@@ -28,9 +28,25 @@ func _on_more_burst_pressed() -> void:
 func _on_less_burst_pressed() -> void:
 	$Ship.increase_burst(-1)
 
+
 #Trigonometrics
 func _on_more_trig_pressed() -> void:
 	$Ship.level_up_trig(1)
 
 func _on_less_trig_pressed() -> void:
 	$Ship.level_up_trig(-1)
+
+
+#Orbit N
+func _on_more_orbit_n_pressed() -> void:
+	$Ship.increase_orbit_n(1)
+
+func _on_less_orbit_n_pressed() -> void:
+	$Ship.increase_orbit_n(-1)
+
+#Orbit D
+func _on_more_orbit_d_pressed() -> void:
+	$Ship.increase_orbit_d(1)
+
+func _on_less_orbit_d_pressed() -> void:
+	$Ship.increase_orbit_d(-1)

@@ -38,6 +38,7 @@ vframes = 10
 frame = 75
 
 [node name="Cockpit" type="Sprite2D" parent="Spritesheet"]
+position = Vector2(-1.0821e-05, -3.2)
 texture = ExtResource("3_jxb0l")
 hframes = 18
 vframes = 10
